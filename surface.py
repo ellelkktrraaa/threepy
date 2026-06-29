@@ -1,4 +1,7 @@
-def eq(a, b, c= 0.0001):
+from tkinter import Y
+
+
+def eq(a, b, c= 0.0001)->bool:
     return abs(a-b)<c
 
 class Vector3:
@@ -27,9 +30,12 @@ class Vector3:
 
     def __eq__(self, vector3):
         return eq(self.x, vector3.x) and eq(self.y, vector3.y) and eq(self.z, vector3.z)
-
+    def __truediv__(self,vector3): 
+        dx = self.y*vector3.z-self.z*vector3.y
+        dy = self.z*vector3.x-self.x*vector3.z
+        dz = self.x*vector3.y-self.y*vector3.x
+        return Vector3(dx,dy,dz)   
     
-
     def getLen(self):
         return (self.x**2 + self.y**2 +self.z**2)**0.5
 
@@ -59,7 +65,10 @@ class StraightLine:
         self.point:Point = point
         self.law_vector:Vector3 = law_vector
     
-    def inLine(self,point2:Point):
+    def inLine(self,point2:Point)->bool:
+        """
+        判断点是否在直线上
+        """
         d_vector = point2.getPos() - self.point.getPos()
         d_len = d_vector.getLen()
         law_len = self.law_vector.getLen()
@@ -69,14 +78,29 @@ class Surface:
     def __init__(self, point_a:Point, point_b:Point, point_c:Point):
         
         if point_a.getPos() == point_b.getPos() or point_a.getPos() == point_b.getPos() or point_c.getPos() == point_a.getPos():
-            raise Exception("attempt to initialize a Surface with points with the same value.")
+            raise Exception("attempt to initialize a Surface with points have the same value.")
+        line = StraightLine(point_a.getPos()-point_b.getPos(), point_a)
+        if line.inLine(point_c):
+            raise Exception("attempt to initialize a Surface with points on the same line.")
+        
 
         self.point_a = point_a
         self.point_b = point_b
         self.point_c = point_c
+    def getVector(self,point_a:Point,point_b:Point,point_c:Point):
+        dv1=point_a.getPos()-point_b.getPos()
+        dv2=point_b.getPos()-point_c.getPos()
+        law_Vector=dv1/dv2
+        return law_Vector
+        
+        
+
+        
+        
     
     def getLaw(self)->Vector3:
         self
+
         
 
 

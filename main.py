@@ -10,7 +10,8 @@ def main():
     print((Vector3(1, 2, 3)+Vector3(0, 1, 2)).showInfo())
     print(Vector3(1, 2, 3)==Vector3(1, 2, 3))
 
-    Surface(Point(Vector3(1, 2, 3)), Point(Vector3(1, 2, 3)), Point(Vector3(2, 3, 4)))
+    Surface(Point(Vector3(1, 2, 3)), Point(Vector3(1, 3, 2)), Point(Vector3(2, 3, 4)))
+   
 
 
 if __name__=='__main__':
