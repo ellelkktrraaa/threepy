@@ -39,18 +39,14 @@ class Vector3:
 
 class Point:
     def __init__(self, vector3:Vector3):
-        self.x = vector3.x
-        self.y = vector3.y
-        self.z = vector3.z
+        self.pos = vector3
     
     def setPos(vector3:Vector3):
-        self.x = vector3.x
-        self.y = vector3.y
-        self.z = vector3.z
+        self.pos = vector3
 
     def getPos(self)->Vector3:
         return Vector3(self.x, self.y, self.z)
-    
+
 class StraightLine:
     def __init__(self, law_vector:Vector3, point:Point):
         if law_vector.getLen == 0:
@@ -70,7 +66,7 @@ class Surface:
         
         if point_a.getPos() == point_b.getPos() or point_a.getPos() == point_b.getPos() or point_c.getPos() == point_a.getPos():
             raise Exception("attempt to initialize a Surface with points with the same value.")
-
+        
         self.point_a = point_a
         self.point_b = point_b
         self.point_c = point_c
