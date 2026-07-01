@@ -65,6 +65,26 @@ class Vector3(Vector):
     def z(self, v):
         self._data[2] = v
 
+class Vector2(Vector):
+    """二维向量"""
+    def __init__(self, x, y,):
+        super().__init__(x, y)
+
+    @property
+    def x(self):
+        return self._data[0]
+
+    @x.setter
+    def x(self, v):
+        self._data[0] = v
+
+    @property
+    def y(self):
+        return self._data[1]
+
+    @y.setter
+    def y(self, v):
+        self._data[1] = v
 
 class Matrix:
     def __init__(self, ini_list):
