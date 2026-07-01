@@ -24,7 +24,7 @@ class StraightLine:
         self.point: Point = point
         self.law_vector: Vector3 = law_vector
 
-    def inLine(self, point2: Point) -> bool:
+    def inLine(self, point2:Point)->bool:
         """判断点是否在直线上喵"""
         d_vector = point2.getPos() - self.point.getPos()
         d_len = d_vector.getLen()
@@ -33,7 +33,7 @@ class StraightLine:
 
 
 class Surface:
-    def __init__(self, point_a: Point, point_b: Point, point_c: Point):
+    def __init__(self, point_a:Point, point_b:Point, point_c:Point):
         if point_a.getPos() == point_b.getPos() or point_a.getPos() == point_b.getPos() or point_c.getPos() == point_a.getPos():
             raise Exception("attempt to initialize a Surface with points have the same value.")
         line = StraightLine(point_a.getPos() - point_b.getPos(), point_a)
@@ -44,7 +44,7 @@ class Surface:
         self.point_b = point_b
         self.point_c = point_c
 
-    def getLaw(self) -> Vector3:
+    def getLaw(self)->Vector3:
         dv1 = self.point_a.getPos() - self.point_b.getPos()
         dv2 = self.point_b.getPos() - self.point_c.getPos()
-        return cross(dv1, dv2)
+        return cross(dv1, dv2)        
